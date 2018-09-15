@@ -15,9 +15,9 @@ public class UIMeshAnchoringV2 : MonoBehaviour
     public Vector2 minAnchor = new Vector2(0.5f, 0.5f);
     public Vector2 maxAnchor = new Vector2(0.5f, 0.5f);
 
-    //[HideInInspector]
+    [HideInInspector]
     public Vector2 minOffset = new Vector2(0, 0);
-    //[HideInInspector]
+    [HideInInspector]
     public Vector2 maxOffset = new Vector2(0, 0);
     [HideInInspector]
     public Renderer refRenderer;
@@ -50,7 +50,8 @@ public class UIMeshAnchoringV2 : MonoBehaviour
 
     private void CalculateMeshSize()
     {
-        if(refParentTransform == null){
+        if (refParentTransform == null)
+        {
             return;
         }
         Vector3[] parentCorners = new Vector3[4];
@@ -61,13 +62,13 @@ public class UIMeshAnchoringV2 : MonoBehaviour
         var currentRect = refRenderer.bounds;
 
         float xFactor, yFactor;
-        xFactor = refBounds.extents.x != 0 ? (max.x - min.x) / (refBounds.extents.x*2) : 1;
-        yFactor = refBounds.extents.y != 0 ? (max.y - min.y) / (refBounds.extents.y*2) : 1;
+        xFactor = refBounds.extents.x != 0 ? (max.x - min.x) / (refBounds.extents.x * 2) : 1;
+        yFactor = refBounds.extents.y != 0 ? (max.y - min.y) / (refBounds.extents.y * 2) : 1;
         transform.localScale = new Vector3(refScale.x * (xFactor),
             refScale.y * (yFactor),
             refScale.z);
         RecenterMesh(max, min, xFactor, yFactor);
-        
+
     }
 
     private void RecenterMesh(Vector2 max, Vector2 min, float xFactor, float yFactor)
@@ -340,4 +341,3 @@ public class UIScalerEditorV2 : Editor
     }
 }
 #endif
- 
